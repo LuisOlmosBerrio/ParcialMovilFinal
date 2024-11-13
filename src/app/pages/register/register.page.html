@@ -1,0 +1,100 @@
+<ion-content [fullscreen]="true">
+
+<form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+  <ion-card-content>
+    <app-avatar></app-avatar>
+  </ion-card-content>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="person" [Control]="name" label="Name..." type="text"></app-input>
+      <ion-text color="danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+        Name is required.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="person" [Control]="Lastname" label="Lastname..." type="text"></app-input>
+      <ion-text color="danger" *ngIf="Lastname.invalid && (Lastname.dirty || Lastname.touched)">
+        Lastname is required.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="calendar" [Control]="Age" label="Age..." type="number"></app-input>
+      <ion-text color="danger" *ngIf="Age.invalid && (Age.dirty || Age.touched)">
+        Age is required.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="call" [Control]="Phone" label="Phone..." type="number"></app-input>
+      <div *ngIf="Phone.invalid && (Phone.dirty || Phone.touched)">
+        <ion-text color="danger" *ngIf="Phone.errors?.['required']">
+          Phone number is required.
+        </ion-text>
+
+        <ion-text color="danger" *ngIf="Phone.errors?.['pattern']">
+          Phone number is invalid.
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="mail" [Control]="Email" label="E-mail..." type="email"></app-input>
+      <div *ngIf="Email.invalid && (Email.dirty || Email.touched)">
+        <ion-text color="danger" *ngIf="Email.errors?.['required']">
+          Email is required.
+        </ion-text>
+        <ion-text color="danger" *ngIf="Email.errors?.['email']">
+          Email is invalid.
+        </ion-text>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="lock-closed-outline" [Control]="Password" label="Password..." type="password"></app-input>
+      <ion-text color="danger" *ngIf="Password.invalid && (Password.dirty || Password.touched)">
+        Password is required.
+      </ion-text>
+      <ion-text color="danger" *ngIf="Password.errors?.['minlength'] && Password.touched">
+        Password must be at least 8 characters long.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card>
+    <ion-card-content>
+      <app-input icon="lock-closed-outline" [Control]="confirmPassword" label="Confirm Password..."
+        type="password"></app-input>
+      <ion-text color="danger" *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)">
+        Confirm Password is required.
+      </ion-text>
+      <ion-text color="danger" *ngIf="registerForm.errors?.['passwordMismatch']">
+        Passwords do not match.
+      </ion-text>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card-content>
+    <app-button type="submit" value="register" expand="full" color="primary"></app-button>
+  </ion-card-content>
+
+  <ion-card-content>
+    <app-button type="button" value="Already registered? Go to Login" expand="full" color="success">
+    </app-button>
+  </ion-card-content>
+</form>
+</ion-content>

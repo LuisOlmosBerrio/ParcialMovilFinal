@@ -1,0 +1,48 @@
+.IconNote {
+    margin-top: 125px;
+    margin-left: 85px;
+    margin-bottom: 35px;
+    width: 235px;
+    height: 222px;
+}
+
+.app-button{
+    margin-left: 25%;
+}
+
+a{
+    cursor: pointer;
+    float: left;
+    text-transform: uppercase;
+    font-family: Roboto;
+    font-size: 25px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+app-button{
+    margin-left: 15%;   
+}
+
+ion-alert.custom-alert {
+    --backdrop-opacity: 0.7;
+  }
+  
+  .custom-alert .alert-button-group {
+    padding: 8px;
+  }
+  
+  .ios .custom-alert button.alert-button {
+    border: 0.55px solid rgba(var(--ion-text-color-rgb, 0, 0, 0), 0.2);
+  }
+  
+  .ios button.alert-button.alert-button-cancel {
+    border-right: 0;
+    border-bottom-left-radius: 13px;
+    border-top-left-radius: 13px;
+  }
+  
+  .ios button.alert-button.alert-button-confirm {
+    border-bottom-right-radius: 13px;
+    border-top-right-radius: 13px;
+  }
