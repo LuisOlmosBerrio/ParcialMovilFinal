@@ -1,20 +1,41 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Blank
+      MyPetCare
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content [fullscreen]="false">
+  <ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+    <ion-searchbar animated="true" placeholder="Search Pet"></ion-searchbar>
+  </ion-item>
+  <ion-list>
+    <ion-item >
+      <ion-label>
+        <h2>erdfg</h2>
+        <p>sdfv</p>
+        <p><strong>Date:</strong> sdf</p>
+        <p><strong>User ID:</strong> sdf</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home">
+      <ion-icon name="home"></ion-icon>
+      <ion-label>Home</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="paw">
+      <ion-icon name="paw-outline"></ion-icon>
+      <ion-label>My Pet</ion-label>
+    </ion-tab-button>
+    <ion-tab-button tab="search">
+      <ion-icon name="person-circle-outline"></ion-icon>
+      <ion-label>Me</ion-label>
+    </ion-tab-button>
+  </ion-tab-bar>
+</ion-tabs>
