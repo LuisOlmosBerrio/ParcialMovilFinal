@@ -15,6 +15,14 @@ export class AuthService {
       .catch((err)=> reject(err));
       
     });
-
   };
+
+  public async login(email: string, Password: string) {
+    return new Promise((resolve, reject) => {
+      this.fbAuth.signInWithEmailAndPassword(email, Password)
+      .then((res) => resolve(res))
+      .catch((err) => reject(err));
+    })
+  }
+
 }

@@ -8,7 +8,7 @@
       />
     </ion-col>
   </ion-row>
-  <form [formGroup]="form">
+  <form [formGroup]="form" (ngSubmit)="doLogin()">
     <ion-row>
       <ion-col>
         <app-input
