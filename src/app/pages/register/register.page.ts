@@ -1,7 +1,9 @@
 import { Component,} from '@angular/core';
-import {FormControl, FormGroup, Validators } from '@angular/forms';
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { AlertController, NavController } from '@ionic/angular';
 import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
 import { AuthService } from 'src/app/shared/services/auth/auth.service';
+import { FirebaseService } from 'src/app/shared/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-register',
@@ -18,28 +20,47 @@ export class RegisterPage {
   public confirmPassword!: FormControl;
   public registerForm!: FormGroup;
 
-  constructor(private readonly authsrv: AuthService, private readonly Loadingsrv: LoadingService) {
-
+  constructor(
+    private readonly authsrv: AuthService,
+    private readonly firebasesrv: FirebaseService,
+    private readonly Loadingsrv: LoadingService,
+    private readonly navCtr: NavController,
+    private readonly alertCtrl: AlertController
+  ) {
     this.InitForm();
   }
 
+  public async doRegister() {
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      await this.showAlert('Please fill all the required fields correctly.');
+      return;
+    }
+    const { Email, Password } = this.registerForm.value;
 
-  public async doRegister(){
     try {
-      await this.Loadingsrv.show()
-      console.log(this.registerForm.value);
-      const { Email, Password } = this.registerForm.value;
+      const emailExists = await this.firebasesrv.emailExists(Email);
+      if (emailExists) {
+        await this.showAlert('The email is already registered.');
+        return;
+      }
+
+      const userData = this.registerForm.value;
+      await this.firebasesrv.addUser(userData);
+      console.log('User registered: ', userData);
+
       const response = await this.authsrv.register(Email, Password);
-      console.log(response)
+      this.navCtr.navigateForward('home');
       await this.Loadingsrv.dismiss();
     } catch (error) {
       await this.Loadingsrv.dismiss();
-      console.error(error);
-      
+      console.error('Error during registration:', error);
     }
-   
+  }
 
-  };
+  public goToLogin() {
+    this.navCtr.navigateForward('login');
+  }
 
   private InitForm() {
     this.name = new FormControl('', [Validators.required]);
@@ -65,8 +86,27 @@ export class RegisterPage {
         Password: this.Password,
         confirmPassword: this.confirmPassword,
       },
-      
+      { validators: this.passwordMatchValidator }
     );
   }
-  
+
+  private passwordMatchValidator(
+    form: AbstractControl
+  ): ValidationErrors | null {
+    const password = form.get('Password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    if (password !== confirmPassword) {
+      return { passwordMismatch: true };
+    }
+    return null;
+  }
+
+  async showAlert(message: string) {
+    const alert = await this.alertCtrl.create({
+      header: 'Form Error',
+      message: message,
+      buttons: ['OK'],
+    });
+    await alert.present();
+  }
 }
