@@ -8,9 +8,10 @@ import { Component, Input } from '@angular/core';
 export class CardsComponent  {
   @Input() img: string = '';
   @Input() name: string = '';
-  @Input() espesie: string = '';
+  @Input() breed: string = '';
+  @Input() age!: number;
+  @Input() birthDate!: Date;
 
-  //Cambiar a ingles
 
   constructor() { }
 
