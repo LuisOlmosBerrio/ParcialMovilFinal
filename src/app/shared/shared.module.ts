@@ -7,8 +7,9 @@ import { ButtonComponent } from './components/button/button.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { AuthService } from './services/auth/auth.service';
 import { LoadingService } from './controllers/loading/loading.service';
+import { CardsComponent } from './components/cards/cards.component';
 
-const COMPONENTS = [InputComponent, ButtonComponent, AvatarComponent];
+const COMPONENTS = [InputComponent, ButtonComponent, AvatarComponent, CardsComponent];
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
 const PROVIDERS = [AuthService];
 const CONTROLLERS = [LoadingService];

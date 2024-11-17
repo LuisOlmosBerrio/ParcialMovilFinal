@@ -25,6 +25,11 @@ const routes: Routes = [
     redirectTo: 'login',
     pathMatch: 'full',
   },
+  {
+    path: 'info-pet/:id',
+    loadChildren: () => import('./pages/info-pet/info-pet.module').then( m => m.InfoPetPageModule)
+  },
+
 ];
 
 @NgModule({
