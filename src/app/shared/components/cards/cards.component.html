@@ -1,11 +1,40 @@
-<ion-card>
-  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRBlDvE-RVP9hs4d27P-4892R_y-atYHN2G1Q&s" />
+<ion-card class="pet-card">
+  <img [src]="img" alt="{{ name }}" class="card-image" />
+  
   <ion-card-header>
-    <ion-card-title>Tom</ion-card-title>
-    <ion-card-subtitle>Gato</ion-card-subtitle>
+    <ion-card-title>{{ name }}</ion-card-title>
+    <ion-card-subtitle>{{ breed }}</ion-card-subtitle>
   </ion-card-header>
 
   <ion-card-content>
-    Here's a small text description for the card content. Nothing more, nothing less.
+    <div class="pet-info">
+      <p>
+        <ion-icon name="paw-outline"></ion-icon>
+        <span>Nombre:</span> {{ name }}
+      </p>
+      <p>
+        <ion-icon name="calendar-outline"></ion-icon>
+        <span>Edad:</span> {{ age }} años
+      </p>
+      <p>
+        <ion-icon name="card-outline"></ion-icon>
+        <span>Raza:</span> {{ breed }}
+      </p>
+      <p>
+        <ion-icon name="gift-outline"></ion-icon>
+        <span>Fecha de nacimiento:</span> {{ birthDate | date: 'dd/MM/yyyy' }}
+      </p>
+      <p>
+        <ion-icon name="person-outline"></ion-icon>
+        <span>Dueño:</span> {{ owner }}
+      </p>
+    </div>
+
+    <div class="action-buttons">
+      <ion-button expand="block" color="primary" (click)="viewPetDetails()">
+        <ion-icon name="eye-outline"></ion-icon>
+        Ver
+      </ion-button>
+    </div>
   </ion-card-content>
 </ion-card>

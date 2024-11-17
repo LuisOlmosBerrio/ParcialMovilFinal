@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-cards',
@@ -6,15 +7,20 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./cards.component.scss'],
 })
 export class CardsComponent  {
-  @Input() img: string = '';
-  @Input() name: string = '';
-  @Input() breed: string = '';
+  @Input() id!: number;
+  @Input() img!: string;
+  @Input() name!: string;
+  @Input() breed!: string;
   @Input() age!: number;
-  @Input() birthDate!: Date;
+  @Input() birthDate!: string;
+  @Input() owner!: string;
 
 
-  constructor() { }
+  constructor(private readonly navCtr: NavController) { }
 
-
+  viewPetDetails() {
+    console.log("Redirigiendo con ID de la mascota:", this.id);
+    this.navCtr.navigateForward(`/info-pet/${this.id}`);
+  }
 
 }

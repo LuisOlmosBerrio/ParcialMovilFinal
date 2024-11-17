@@ -7,26 +7,16 @@
 </ion-header>
 
 <ion-content [fullscreen]="false">
-  <ion-item>
+    <ion-searchbar animated="true" placeholder="Search Pet"></ion-searchbar>  
 
-    <ion-searchbar animated="true" placeholder="Search Pet"></ion-searchbar>
-  </ion-item>
-  <app-cards></app-cards>
+    <app-cards *ngFor="let pet of pets"
+    [id]="pet.id" 
+    [img]="pet.photoUrl" 
+    [name]="pet.name" 
+    [age]="pet.age" 
+    [breed]="pet.breed" 
+    [birthDate]="pet.birthDate" 
+    [owner]="pet.owner">
+  </app-cards>
 </ion-content>
 
-<ion-tabs>
-  <ion-tab-bar slot="bottom">
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="paw">
-      <ion-icon name="paw-outline"></ion-icon>
-      <ion-label>My Pet</ion-label>
-    </ion-tab-button>
-    <ion-tab-button tab="search">
-      <ion-icon name="person-circle-outline"></ion-icon>
-      <ion-label>Me</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
