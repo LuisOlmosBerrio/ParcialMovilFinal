@@ -1,27 +1,35 @@
 <ion-content [fullscreen]="true">
 
-<form [formGroup]="registerForm" (ngSubmit)="doRegister()">
-  <ion-card-content>
-    <app-avatar></app-avatar>
-  </ion-card-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title> 
+        <b>¡WELCOME!</b> 
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
 
-  <ion-card>
+<form [formGroup]="registerForm" (ngSubmit)="doRegister()">
+  <ion-card class="avatar-card">
     <ion-card-content>
-      <app-input icon="person" [Control]="name" label="Name..." type="text"></app-input>
-      <ion-text color="danger" *ngIf="name.invalid && (name.dirty || name.touched)">
-        Name is required.
-      </ion-text>
+      <app-avatar></app-avatar>
     </ion-card-content>
   </ion-card>
 
   <ion-card>
-    <ion-card-content>
+    <ion-card-content class="input-row">
+      <app-input icon="person" [Control]="name" label="Name..." type="text"></app-input>
+      <ion-text color="danger" *ngIf="name.invalid && (name.dirty || name.touched)">
+        Name is required.
+      </ion-text>
+  
       <app-input icon="person" [Control]="Lastname" label="Lastname..." type="text"></app-input>
       <ion-text color="danger" *ngIf="Lastname.invalid && (Lastname.dirty || Lastname.touched)">
         Lastname is required.
       </ion-text>
     </ion-card-content>
   </ion-card>
+  
 
   <ion-card>
     <ion-card-content>
@@ -89,12 +97,11 @@
 
 
   <ion-card-content>
-    <app-button type="submit" value="register" expand="full" color="primary"></app-button>
-  </ion-card-content>
-
-  <ion-card-content>
-    <app-button type="button" value="Already registered? Go to Login" expand="full" color="success" (click)="goToLogin()">
+    <app-button type="submit" value="register"  color="primary"></app-button>
+  
+    <app-button type="button" value="Already registered?"   (click)="goToLogin()">
     </app-button>
   </ion-card-content>
+  
 </form>
 </ion-content>
