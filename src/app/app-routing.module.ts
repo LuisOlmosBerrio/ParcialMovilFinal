@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { authGuard } from './shared/Guards/guards.guard';
 
 const routes: Routes = [
   {
     path: 'home',
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomePageModule),
+    canActivate: [authGuard],
   },
 
   {
@@ -19,15 +21,15 @@ const routes: Routes = [
       import('./pages/register/register.module').then((m) => m.RegisterPageModule
       ),
   },
+  {
+    path: 'info-pet/:id',
+    loadChildren: () => import('./pages/info-pet/info-pet.module').then( m => m.InfoPetPageModule)
+  },
 
   {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full',
-  },
-  {
-    path: 'info-pet/:id',
-    loadChildren: () => import('./pages/info-pet/info-pet.module').then( m => m.InfoPetPageModule)
   },
 
 ];

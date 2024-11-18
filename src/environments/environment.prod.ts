@@ -9,4 +9,8 @@ export const environment = {
     appId: '1:207376518203:web:8fb5436f2b588b6d1ea01e',
     measurementId: 'G-LEKBFH8Q61',
   },
+  SUPABASE_CONFIG: {
+    url: 'https://tqcqwrdspsugzafuqhro.supabase.co',
+    publicKey: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRxY3F3cmRzcHN1Z3phZnVxaHJvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MzE5MDAwMjgsImV4cCI6MjA0NzQ3NjAyOH0.CMQAP5V5ab7X1AbL91OC7lft6-pvWNsS2WV_7UrelOA',
+  }
 };
