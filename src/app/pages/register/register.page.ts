@@ -1,9 +1,9 @@
 import { Component,} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { AlertController, NavController } from '@ionic/angular';
-import { LoadingService } from 'src/app/shared/controllers/loading/loading.service';
-import { AuthService } from 'src/app/shared/services/auth/auth.service';
-import { FirebaseService } from 'src/app/shared/services/firebase/firebase.service';
+import { LoadingService } from '../../shared/controllers/loading/loading.service';
+import { AuthService } from '../../shared/services/auth/auth.service';
+import { FirebaseService } from '../../shared/services/firebase/firebase.service';
 
 @Component({
   selector: 'app-register',

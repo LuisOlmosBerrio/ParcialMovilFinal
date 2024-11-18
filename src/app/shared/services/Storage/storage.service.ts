@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../../../environments/environment';
-import { SupabaseUploadResponse } from '../../../interfaces/supabase.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -13,33 +12,22 @@ export class StorageService {
     this.supabase = createClient(environment.SUPABASE_CONFIG.url, environment.SUPABASE_CONFIG.publicKey);
   }
 
-  //subir una imagen
-  async uploadImage(bucket: string, filePath: string, file: File): Promise<SupabaseUploadResponse> {
-    try {
-      const { data, error } = await this.supabase.storage.from(bucket).upload(filePath, file, {
-        cacheControl: '3600',
-        upsert: false,
-      });
-
-      if (error) {
-        throw new Error(`Error uploading file: ${error.message}`);
-      }
-
-      return data as SupabaseUploadResponse;
-    } catch (error) {
-      console.error('Error in uploadImage:', error);
-      throw error;
-    }
+  // Subir una imagen al bucket
+  async uploadImage(bucket: string, filePath: string, file: File): Promise<any> {
+    const { data, error } = await this.supabase.storage.from(bucket).upload(filePath, file, {
+      cacheControl: '3600',
+      upsert: false,       
+    });
+    if (error) throw error;
+    return data;
   }
 
+  // Obtener la URL pública de un archivo
   async getPublicUrl(bucket: string, filePath: string): Promise<string> {
     const { data } = await this.supabase.storage.from(bucket).getPublicUrl(filePath);
-  
-    if (!data) {
-      throw new Error('No data returned from Supabase');
+    if (data) {
+      return data.publicUrl;
     }
-
-    return data.publicUrl;
+    throw new Error('Error retrieving public URL');
   }
-  
 }
